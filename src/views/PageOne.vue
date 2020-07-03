@@ -1,5 +1,6 @@
 <template>
   <div>
+    <go-back></go-back>
     <h1>
       Hi!
       <small class="text-muted">I am page 1!</small>
@@ -16,6 +17,7 @@
 </style>
 
 <script>
+import GoBack from "../components/GoBackButton";
 export default {
   data() {
     // console.log(this);
@@ -24,6 +26,9 @@ export default {
       id: this.$route.params.id
     };
   },
+  components: {
+    "go-back": GoBack
+  },
   beforeMount() {
     console.log("Page is being mounted");
   },
@@ -31,10 +36,12 @@ export default {
     console.log("Page is being created");
   },
   created() {
+    // Fetch data
     console.log("Page is created");
   },
 
   mounted() {
+    // Filter todo - completed or not
     console.log("Page is mounted");
   },
   beforeDestroy() {

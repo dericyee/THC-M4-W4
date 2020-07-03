@@ -19,7 +19,7 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     // component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
-    component: About
+    component: About,
   },
   {
     path: '/page-one/:id',
@@ -29,9 +29,24 @@ const routes = [{
   },
   {
     path: '/page-two',
-    name: 'PageTwo',
     // component: PageTwo
-    component: () => import( /* webpackChunkName: "PageTwo" */ '../views/PageTwo.vue')
+    component: () => import( /* webpackChunkName: "PageTwo" */ '../views/PageTwo.vue'),
+    children: [{
+        path: '',
+        name: 'PageTwo',
+        component: () => import( /* webpackChunkName: "PageTwoMenu" */ '../views/PageTwoMenu.vue')
+      },
+      {
+        path: 'a',
+        name: 'PageTwoA',
+        component: () => import( /* webpackChunkName: "PageTwoA" */ '../views/PageTwo/PageTwoA.vue')
+      },
+      {
+        path: 'b',
+        name: 'PageTwoB',
+        component: () => import( /* webpackChunkName: "PageTwoA" */ '../views/PageTwo/PageTwoB.vue')
+      }
+    ]
   },
 ]
 
